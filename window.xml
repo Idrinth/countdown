@@ -1,0 +1,27 @@
+<Interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Interface.xsd">
+  <Windows>
+    <Window name="Countdown" handleinput="false" layer="background" savesettings="true">
+      <Size>
+        <AbsPoint x="160" y="50" />
+      </Size>
+      <Windows>
+        <Label name="$parentLabel" inherits="DefaultWindowText" textalign="center">
+          <Size>
+            <AbsPoint x="160" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="top" relativePoint="top" relativeTo="$parent" />
+          </Anchors>
+        </Label>
+        <Label name="$parentTimer" inherits="DefaultWindowText" textalign="center">
+          <Size>
+            <AbsPoint x="160" y="25" />
+          </Size>
+          <Anchors>
+            <Anchor point="bottom" relativePoint="top" relativeTo="$parentLabel" />
+          </Anchors>
+        </Label>
+      </Windows>
+    </Window>
+  </Windows>
+</Interface>
