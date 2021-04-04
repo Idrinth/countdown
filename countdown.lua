@@ -166,12 +166,12 @@ function Countdown.OnUpdate(elapsed)
                 then
                     if DataUtils.activeObjectivesData[objectiveIndex].Quest[questIndex] ~= nil then
                         local quest = DataUtils.activeObjectivesData[objectiveIndex].Quest[questIndex]
-                        if quest.timerState ~= GameData.PQTimerState.FROZEN then
+                        if quest.timerState == GameData.PQTimerState.FROZEN then
                             LabelSetText(header, L"Starting in")
                             displayCountdown(quest.timerValue, not Countdown.Settings.header, "START");
                             localTimer = 0
                             return
-                        elseif quest.timerState ~= GameData.PQTimerState.RUNNING and GameData.ScenarioData.timeLeft <= 60 then
+                        elseif quest.timerState == GameData.PQTimerState.RUNNING and GameData.ScenarioData.timeLeft <= 60 then
                             LabelSetText(header, L"Ending in")
                             displayCountdown(quest.timerValue, not Countdown.Settings.header, "END");
                             localTimer = 0
