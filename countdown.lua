@@ -162,18 +162,18 @@ function Countdown.OnUpdate(elapsed)
     if GameData.Player.isInSiege then
         for objectiveIndex = 1, EA_Window_CityTracker.NUM_OBJECTIVES do
             for questIndex = 1, EA_Window_CityTracker.NUM_QUESTS do
-                if (DataUtils.activeObjectivesData[objectiveIndex] ~= nil)
-                then
+                if DataUtils.activeObjectivesData[objectiveIndex] ~= nil then
                     if DataUtils.activeObjectivesData[objectiveIndex].Quest[questIndex] ~= nil then
                         local quest = DataUtils.activeObjectivesData[objectiveIndex].Quest[questIndex]
-                        if quest.timerState == GameData.PQTimerState.FROZEN then
+                        local timeLeft = DataUtils.GetPQTimerRemaining(quest.timerState, quest.timerValue)
+                        if quest.timerState == GameData.PQTimerState.RUNNING and quest.name == L"Prepare for Battle!" then
                             LabelSetText(header, L"Starting in")
-                            displayCountdown(quest.timerValue, not Countdown.Settings.header, "START");
+                            displayCountdown(timeLeft, not Countdown.Settings.header, "START");
                             localTimer = 0
                             return
-                        elseif quest.timerState == GameData.PQTimerState.RUNNING and GameData.ScenarioData.timeLeft <= 60 then
+                        elseif quest.timerState == GameData.PQTimerState.RUNNING and timeLeft <= 60 then
                             LabelSetText(header, L"Ending in")
-                            displayCountdown(quest.timerValue, not Countdown.Settings.header, "END");
+                            displayCountdown(timeLeft, not Countdown.Settings.header, "END");
                             localTimer = 0
                             return
                         end
